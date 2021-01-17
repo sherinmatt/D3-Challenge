@@ -22,7 +22,18 @@ var chartsMargin = {
 };
 
 // making dimensions of chart area
-var chartWidth = svgWidth - chartsMargin.left - chartsMargin.right;
-var chartHeight = svgHeight - chartsMargin.top - chartsMargin.bottom;
+var width = svgWidth - chartsMargin.left - chartsMargin.right;
+var height = svgHeight - chartsMargin.top - chartsMargin.bottom;
 
+// appending svg
+var svg = d3 
+     .select("#scatter")
+     .append("svg")
+     .attr("height", svgHeight)
+     .attr("width", svgWidth);
 
+// appenging
+var chartGroup = svg.append("g")
+  .attr("transform", `translate(${chartsMargin.left}, ${chartsMargin.top})`);
+
+// getting data
