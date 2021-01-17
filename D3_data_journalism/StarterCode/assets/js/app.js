@@ -58,9 +58,47 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
       .range([height, 0]);
   
   // axis funct
-
   var bAxis = d3.axisBottom(xLinearScale);
   var lAxis = d3.axisLeft(yLinearScale);
 
+  // apending axes 
+  chartGroup.append("g")
+      .attr("transform", `translate(0, ${height})`)
+      .call(bAxis);
+
+    chartGroup.append("g")
+      .call(lAxis);
+
+  // circles
+  var circlesGroup = chartGroup.selectAll("circle")
+  .data(usData)
+  .enter()
+  .append("circle")
+  .attr("cx", d => xLinearScale(d.poverty +1.6))
+  .attr("cy", d => yLinearScale(d.healthcare +0.4))
+  .attr("r", "15")
+  .attr("fill", "blue")
+  .attr("opacity", ".4");
+
+  // label
+
+
+// health
+  chartGroup.append("text")
+     .attr("transform", "rotate(-90)")
+     .attr("y", 0 - chartsMargin.left + 50)
+     .attr("x", 0 - (height / 2))
+     .attr("dy", "1em")
+     .attr("class", "axisText")
+     .text("Lack of Healthcare (%)");
+  // poverty
+  chartGroup.append("text")
+     .attr("transform", `translate(${width / 2}, ${height + chartsMargin.top + 9})`)
+     .attr("dy", "1em")
+     .attr("class", "axisText")
+     .text("In Poverty (%)");
+
+}).catch(function(error) {
+      console.log(error);
 
 });
