@@ -12,15 +12,15 @@
 
 // Healthcare vs Poverty
 
-var svgWidth = 900;
-var svgHeight = 500;
+var svgWidth = 960;
+var svgHeight = 560;
 
 // chartsMargin
 var chartsMargin = {
-    top: 35,
-    right: 35,
-    bottom: 65,
-    left: 85
+    top: 10,
+    right: 20,
+    bottom: 40,
+    left: 90
 };
 
 // making dimensions of chart area
@@ -42,13 +42,13 @@ var chartGroup = svg.append("g")
 d3.csv("./assets/data/data.csv").then(function(usData) {
   console.log(usData);
 
-  // parsing data
+  // parsing data 
   usData.forEach(function(data) {
     data.healthcare = +data.healthcare;
     data.poverty = +data.poverty;
   });
 
-  //scale funct
+  //scale functions
   var xLinearScale = d3.scaleLinear()
       .domain([20, d3.max(usData, d => d.poverty)])
       .range([0, width]);
@@ -57,7 +57,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
       .domain([0, d3.max(usData, d => d.healthcare)])
       .range([height, 0]);
   
-  // axis funct
+  // axis functions
   var bAxis = d3.axisBottom(xLinearScale);
   var lAxis = d3.axisLeft(yLinearScale);
 
@@ -80,10 +80,10 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
   .attr("fill", "blue")
   .attr("opacity", ".4");
 
-  // label
+  // labels
 
 
-// health
+// healthcare
   chartGroup.append("text")
      .attr("transform", "rotate(-90)")
      .attr("y", 0 - chartsMargin.left + 45)
@@ -100,5 +100,4 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
 
 }).catch(function(error) {
       console.log(error);
-
 });
