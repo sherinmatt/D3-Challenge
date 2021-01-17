@@ -75,7 +75,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
   .enter()
   .append("circle")
   .attr("cx", d => xLinearScale(d.poverty +1.6))
-  .attr("cy", d => yLinearScale(d.healthcare +0.4))
+  .attr("cy", d => yLinearScale(d.healthcare +0.3))
   .attr("r", "15")
   .attr("fill", "blue")
   .attr("opacity", ".4");
@@ -86,7 +86,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
 // health
   chartGroup.append("text")
      .attr("transform", "rotate(-90)")
-     .attr("y", 0 - chartsMargin.left + 50)
+     .attr("y", 0 - chartsMargin.left + 45)
      .attr("x", 0 - (height / 2))
      .attr("dy", "1em")
      .attr("class", "axisText")
