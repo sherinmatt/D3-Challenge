@@ -3,14 +3,15 @@
 
 // Part 1
 
-
-// create scatterplot whcih represents each state with circle elements. 
-// include state abbreviation in circles
+//Objectives:
+// make scatterplot which shows each state in US with the circle elements. 
+// also ishow state abbreviation in circles
 // circle
+
+
 
 // area dimension
 
-// Healthcare vs Poverty
 
 var svgWidth = 960;
 var svgHeight = 560;
@@ -49,10 +50,11 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
   });
 
   //scale functions
+  //poverty
   var xLinearScale = d3.scaleLinear()
       .domain([20, d3.max(usData, d => d.poverty)])
       .range([0, width]);
-
+//healthcare
   var yLinearScale = d3.scaleLinear()
       .domain([0, d3.max(usData, d => d.healthcare)])
       .range([height, 0]);
@@ -69,7 +71,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
     chartGroup.append("g")
       .call(lAxis);
 
-  // circles
+  // building circles 
   var circlesGroup = chartGroup.selectAll("circle")
   .data(usData)
   .enter()
@@ -81,7 +83,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
   .attr("opacity", ".4");
 
   // labels
-  //abbreviations
+  //state abbreviations
   chartGroup.append("text")
     .selectAll("tspan")
     .data(usData)
@@ -103,7 +105,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
       .text(function(data){
         return data.abbr
       });
-
+//label
 // healthcare
   chartGroup.append("text")
      .attr("transform", "rotate(-90)")
@@ -114,6 +116,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
      .attr("font-weight", "bold")
      .attr("font-size", "15px")
      .text("Lack of Healthcare (%)");
+  //label
   // poverty
   chartGroup.append("text")
      .attr("transform", `translate(${width / 2}, ${height + chartsMargin.top + 9.5})`)
