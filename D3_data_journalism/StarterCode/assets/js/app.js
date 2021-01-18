@@ -82,6 +82,27 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
 
   // labels
   //abbreviations
+  chartGroup.append("text")
+    .selectAll("tspan")
+    .data(usData)
+    .enter()
+    .append("tspan")
+    .attr("text-anchor", "middle")
+    .attr("font-size", "14px")
+    .attr("font-weight", "bold")
+    .attr("fill", "white")
+
+      .attr("x", function(data){
+        return xLinearScale(data.poverty +1.6);
+      }
+      )
+      .attr("y", function(data){
+        return yLinearScale(data.healthcare +0.4);
+      }
+      )
+      .text(function(data){
+        return data.abbr
+      });
 
 // healthcare
   chartGroup.append("text")
@@ -91,7 +112,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
      .attr("dy", "1em")
      .attr("class", "axisText")
      .attr("font-weight", "bold")
-     .attr("font-size", "15")
+     .attr("font-size", "15px")
      .text("Lack of Healthcare (%)");
   // poverty
   chartGroup.append("text")
@@ -99,7 +120,7 @@ d3.csv("./assets/data/data.csv").then(function(usData) {
      .attr("dy", "1em")
      .attr("class", "axisText")
      .attr("font-weight", "bold")
-     .attr("font-size", "15")
+     .attr("font-size", "15px")
      .text("In Poverty (%)");
 
 }).catch(function(error) {
