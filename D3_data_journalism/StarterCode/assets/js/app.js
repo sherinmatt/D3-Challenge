@@ -6,17 +6,14 @@
 //Objectives:
 // make scatterplot which shows each state in US with the circle elements. 
 // also ishow state abbreviation in circles
-// circle
+//focus here is on lack of healthcare vs rates of poverty by US State
 
 
-
-// area dimension
-
-
+// area dimensions
 var svgWidth = 960;
 var svgHeight = 560;
 
-// chartsMargin
+// chartsMargin are the following
 var chartsMargin = {
     top: 10,
     right: 20,
@@ -35,7 +32,7 @@ var svg = d3
      .attr("height", svgHeight)
      .attr("width", svgWidth);
 
-// appenging
+// appending
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartsMargin.left}, ${chartsMargin.top})`);
 
